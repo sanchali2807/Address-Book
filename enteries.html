@@ -1,0 +1,115 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Entries</title>
+     Link to your CSS file if needed 
+    <link rel="stylesheet" href="entries.css">
+</head>
+<body>
+
+<div class="entries-container">
+    <h2>Form Entries</h2>
+    
+    <div id="entries-list">
+       
+    </div>
+
+    <a href="mainpage.html">Go Back</a>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Retrieve form entries from localStorage
+        var entries = JSON.parse(localStorage.getItem("entries")) || [];
+
+        // Display form entries dynamically
+        displayFormEntries(entries);
+    });
+
+    function displayFormEntries(entries) {
+        var entriesList = document.getElementById("entries-list");
+
+        var entryHTML = entries.map(function(formData) {
+            return `
+                <div class="entry">
+                    <p><strong>Name:</strong> ${formData.name}</p>
+                    <p><strong>Phone:</strong> ${formData.number}</p>
+                    <p><strong>Email:</strong> ${formData.email}</p>
+                    <p><strong>Message:</strong> ${formData.message}</p>
+                </div>
+            `;
+        }).join('');
+
+        entriesList.innerHTML = entryHTML;
+    }
+</script>
+
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Entries</title>
+    <!-- Link to your CSS file if needed -->
+    <link rel="stylesheet" href="enteries.css">
+</head>
+<body>
+
+<div class="entries-container">
+    <h2>Form Entries</h2>
+    
+    <div id="entries-list">
+        <!-- Entries will be displayed here dynamically using JavaScript -->
+    </div>
+
+    <a href="mainpage.html">Go Back</a>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Retrieve form entries from localStorage
+        var entries = JSON.parse(localStorage.getItem("entries")) || [];
+
+        // Display form entries dynamically
+        displayFormEntries(entries);
+    });
+
+    function displayFormEntries(entries) {
+        var entriesList = document.getElementById("entries-list");
+
+        var entryHTML = entries.map(function(formData, index) {
+            return `
+                <div class="entry">
+                    <p><strong>Name:</strong> ${formData.name}</p>
+                    <p><strong>Phone:</strong> ${formData.number}</p>
+                    <p><strong>Email:</strong> ${formData.email}</p>
+                    <p><strong>Message:</strong> ${formData.message}</p>
+                    <button onclick="deleteEntry(${index})">Delete</button>
+                </div>
+            `;
+        }).join('');
+
+        entriesList.innerHTML = entryHTML;
+    }
+
+    function deleteEntry(index) {
+        // Retrieve entries from localStorage
+        var entries = JSON.parse(localStorage.getItem("entries")) || [];
+
+        // Remove the entry at the specified index
+        entries.splice(index, 1);
+
+        // Update localStorage with the modified entries
+        localStorage.setItem("entries", JSON.stringify(entries));
+
+        // Re-display the entries
+        displayFormEntries(entries);
+    }
+</script>
+
+</body>
+</html>

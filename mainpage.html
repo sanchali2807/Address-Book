@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address Book</title>
+    <link rel="stylesheet" href="mainpage.css">
+    <script src="https://kit.fontawesome.com/ac77671025.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    
+<div class="hero">
+<form>
+    <div class="row">
+        <div class="input-group">
+            <input type="text" id="name" required>
+            <label for="name"><i class="fas fa-user"></i> Your name</label>
+        </div>
+        <div class="input-group">
+            <input type="text" id="number" required>
+            <label for="name"><i class="fas fa-phone-square-alt"></i> Phone no</label>
+        </div> 
+    </div>
+    
+     <div class="input-group">
+        <input type="text" id="email" required>
+        <label for="name"><i class="fas fa-envelope"></i> Email Id</label>
+    </div>  
+    <div class="input-group">
+        <textarea id="message" rows="8" required></textarea>
+        <label for="message"><i class="fas fa-comment"></i> Your message</label>
+    </div>
+
+    <button type="submit">SUBMIT<i class="fas fa-paper-plane"></i></button>
+    
+</form>
+
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var form = document.querySelector("form");
+  
+      form.addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent default form submission behavior
+  
+        // Get form data
+        var name = document.getElementById("name").value;
+        var number = document.getElementById("number").value;
+        var email = document.getElementById("email").value;
+        var message = document.getElementById("message").value;
+  
+        // Create an object to hold the form data
+        var formData = {
+          name: name,
+          number: number,
+          email: email,
+          message: message,
+        };
+  
+        // Retrieve existing entries from localStorage
+        var existingEntries = JSON.parse(localStorage.getItem("entries")) || [];
+  
+        // Add the new entry to the array
+        existingEntries.push(formData);
+  
+        // Store the updated entries array in localStorage
+        localStorage.setItem("entries", JSON.stringify(existingEntries));
+  
+        // Redirect to another page (replace 'entries.html' with your desired page)
+        window.location.href = "enteries.html"; 
+      });
+    });
+  </script>
+  
+  
+
+</body>
+</html>
